@@ -46,7 +46,7 @@ public class AudioConverter {
             // Se llama para reportar el progreso (permil = progreso en partes por mil)
             long currentTime = System.currentTimeMillis();
 
-            // Actualizar solo cada cierto intervalo para evitar spam en consola
+            // Actualizar solo cada cierto intervalo
             if (currentTime - lastUpdateTime >= UPDATE_INTERVAL || permil >= 1000) {
                 lastUpdateTime = currentTime;
 
@@ -119,21 +119,7 @@ public class AudioConverter {
             }
         }
     }
-
-    private static void validateFile(File inputFile) {
-        // Verificar que el archivo de entrada existe
-        if (!inputFile.exists()) {
-            System.err.println("Error: El archivo de entrada '" + inputFile.getName() + "' no existe.");
-            System.exit(1);
-        }
-
-        // Verificar que el archivo de entrada es un archivo (no directorio)
-        if (!inputFile.isFile()) {
-            System.err.println("Error: '" + inputFile.getName() + "' no es un archivo válido.");
-            System.exit(1);
-        }
-    }
-
+   
     public static void converter(String inputFileName, String outputFileName) {
 
         // Crear objetos File
@@ -199,6 +185,20 @@ public class AudioConverter {
         }
     }
 
+     private static void validateFile(File inputFile) {
+        // Verificar que el archivo de entrada existe
+        if (!inputFile.exists()) {
+            System.err.println("Error: El archivo de entrada '" + inputFile.getName() + "' no existe.");
+            System.exit(1);
+        }
+
+        // Verificar que el archivo de entrada es un archivo (no directorio)
+        if (!inputFile.isFile()) {
+            System.err.println("Error: '" + inputFile.getName() + "' no es un archivo válido.");
+            System.exit(1);
+        }
+    }
+     
     private static void displayRatio(double ratio) {
         if (ratio < 1.0) {
             // Archivo más pequeño - mostrar reducción
